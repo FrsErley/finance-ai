@@ -1,6 +1,5 @@
+const name = "";
 
 export default function Home() {
-  return (
-    <h1>Hello World</h1>
-  );
+  return <h1 className="text-red-500 p-5">Hello World</h1>;
 }
