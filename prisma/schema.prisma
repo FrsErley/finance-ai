@@ -19,7 +19,7 @@ model Transaction {
   type          TransactionType
   amount        Decimal                     @db.Decimal(10, 2)
   category      TransactionCategory
-  paymentMethod TransportationPaymentMethod
+  paymentMethod TransactionPaymentMethod
   Date          DateTime
   createdAt     DateTime                    @default(now())
   updatedAt     DateTime                    @updatedAt
@@ -44,7 +44,7 @@ enum TransactionCategory {
   OTHER
 }
 
-enum TransportationPaymentMethod {
+enum TransactionPaymentMethod {
   CREDIT_CARD
   DEBIT_CARD
   BANK_TRANSFER

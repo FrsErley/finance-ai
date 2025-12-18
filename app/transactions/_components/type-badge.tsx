@@ -7,8 +7,6 @@ interface TransactionTypeBadgeProps {
 }
 
 const TransactionTypeBadge = ({ transaction }: TransactionTypeBadgeProps) => {
-  console.log("TYPE:", transaction.type);
-
   if (transaction.type === TransactionType.DEPOSIT) {
     return (
       <Badge className="bg-muted font-bold text-primary hover:bg-muted">
