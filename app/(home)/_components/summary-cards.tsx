@@ -27,6 +27,7 @@ const SummaryCards = async ({
         title="Saldo"
         amount={balance}
         size="large"
+        cardColor={true}
       />
 
       <div className="grid grid-cols-3 gap-6">
@@ -34,6 +35,7 @@ const SummaryCards = async ({
           icon={<PiggyBankIcon size={16} />}
           title="Investido"
           amount={investmentsTotal}
+          cardColor={true}
         />
 
         <SummaryCard

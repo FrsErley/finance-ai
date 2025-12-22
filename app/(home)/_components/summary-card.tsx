@@ -7,6 +7,7 @@ interface SummaryCardProps {
   title: string;
   amount: number;
   size?: "small" | "large";
+  cardColor?: boolean;
 }
 
 const SummaryCard = ({
@@ -14,9 +15,10 @@ const SummaryCard = ({
   title,
   amount,
   size = "small",
+  cardColor = false,
 }: SummaryCardProps) => {
   return (
-    <Card className={size === "large" ? "bg-card" : "bg-inherit"}>
+    <Card className={cardColor ? "bg-card" : "bg-inherit"}>
       <CardHeader>
         <div className="flex items-center gap-4">
           {icon}
