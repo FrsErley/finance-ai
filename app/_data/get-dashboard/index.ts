@@ -4,9 +4,15 @@ import {
   TotalExpensePerCategory,
   TransactionPercentagemPerType,
 } from "./types";
+import { auth } from "@clerk/nextjs/server";
 
 export const getDashboard = async (month: string) => {
+  const { userId } = await auth();
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
   const where = {
+    userId,
     date: {
       gte: new Date(new Date().getFullYear(), Number(month) - 1, 1),
       lt: new Date(new Date().getFullYear(), Number(month), 1),
