@@ -16,7 +16,7 @@ const SummaryCard = ({
   size = "small",
 }: SummaryCardProps) => {
   return (
-    <Card>
+    <Card className={size === "large" ? "bg-card" : "bg-inherit"}>
       <CardHeader>
         <div className="flex items-center gap-4">
           {icon}
