@@ -54,6 +54,28 @@ export const POST = async (request: Request) => {
 
       break;
     }
+
+    case "customer.subscription.deleted": {
+      const subscription = event.data.object as Stripe.Subscription;
+      const clerkUserId = subscription.metadata?.clerk_user_id;
+
+      if (!clerkUserId) {
+        return NextResponse.error();
+      }
+
+      await clerkClient().users.updateUser(clerkUserId, {
+        privateMetadata: {
+          stripeCustomerId: null,
+          stripeSubscriptionId: null,
+        },
+        publicMetadata: {
+          subscriptionPlan: null,
+        },
+      });
+
+      break;
+    }
   }
+
   return NextResponse.json({ received: true });
 };
