@@ -1,4 +1,4 @@
-import UpsertTransactionButton from "@/app/_components/add-transaction-button";
+import AddTransactionButton from "@/app/_components/add-transaction-button";
 import { Card, CardContent, CardHeader } from "@/app/_components/ui/card";
 import { ReactNode } from "react";
 
@@ -8,6 +8,7 @@ interface SummaryCardProps {
   amount: number;
   size?: "small" | "large";
   cardColor?: boolean;
+  userCanAddTransaction?: boolean;
 }
 
 const SummaryCard = ({
@@ -16,6 +17,7 @@ const SummaryCard = ({
   amount,
   size = "small",
   cardColor = false,
+  userCanAddTransaction,
 }: SummaryCardProps) => {
   return (
     <Card className={cardColor ? "bg-card" : "bg-inherit"}>
@@ -39,7 +41,9 @@ const SummaryCard = ({
           }).format(amount)}
         </p>
 
-        {size === "large" && <UpsertTransactionButton />}
+        {size === "large" && (
+          <AddTransactionButton userCanAddTransaction={userCanAddTransaction} />
+        )}
       </CardContent>
     </Card>
   );
