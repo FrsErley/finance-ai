@@ -56,20 +56,31 @@ const formSchema = z.object({
   name: z.string().trim().min(1, {
     message: "O nome é obrigatório.",
   }),
-  amount: z.number({ error: "O valor é obrigatório." }).positive({
-    message: "O valor deve ser positivo.",
-  }),
+
+  amount: z
+    .number({
+      required_error: "O valor é obrigatório.",
+      invalid_type_error: "O valor é obrigatório.",
+    })
+    .positive({
+      message: "O valor deve ser positivo.",
+    }),
+
   type: z.nativeEnum(TransactionType, {
-    error: "O tipo é obrigatório.",
+    required_error: "O tipo é obrigatório.",
   }),
+
   category: z.nativeEnum(TransactionCategory, {
-    error: "A categoria é obrigatória.",
+    required_error: "A categoria é obrigatória.",
   }),
+
   paymentMethod: z.nativeEnum(TransactionPaymentMethod, {
-    error: "O método de pagamento é obrigatório.",
+    required_error: "O método de pagamento é obrigatório.",
   }),
+
   date: z.date({
-    error: "A data é obrigatória.",
+    required_error: "A data é obrigatória.",
+    invalid_type_error: "Data inválida.",
   }),
 });
 
@@ -95,7 +106,7 @@ const UpsertTransactionDialog = ({
 
   useEffect(() => {
     if (isOpen) form.reset(defaultValues);
-  }, [isOpen, defaultValues]);
+  }, [isOpen, defaultValues, form]);
 
   console.log("defaultValues", form.getValues());
   const onSubmit = async (data: FormSchema) => {
